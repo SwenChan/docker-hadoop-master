@@ -23,3 +23,4 @@ RUN echo "Protocol 2" >> /etc/ssh/sshd_config && \
     echo "Port 2122" >> /etc/ssh/sshd_config
 ADD ssh_config /root/.ssh/config
 RUN chmod 600 /root/.ssh/config && chown root:root /root/.ssh/config
+
