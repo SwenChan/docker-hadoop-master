@@ -27,12 +27,16 @@ RUN chmod 600 /root/.ssh/config && chown root:root /root/.ssh/config
 # add some env to this place for config
 RUN sed s/HOSTNAME/localhost/ /root/conf/core-site.xml.template > ${HADOOP_CONF_DIR}/core-site.xml
 RUN sed s/REPL_NUM/1/ /root/conf/hdfs-site.xml.template > ${HADOOP_CONF_DIR}/hdfs-site.xml
+RUN sed s/JOB_TRACKER/localhost/ /root/conf/mapred-site.xml.template > ${HADOOP_CONF_DIR}/mapred-site.xml
+RUN echo "export JAVA_HOME=${JAVA_HOME}" >> $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
 
 # Hdfs ports
-EXPOSE 50010 50020 50070 50075 50090 8020 9000
+EXPOSE 50010 50020 50070 50075 50090 8020 9000 \
 # Mapred ports
-EXPOSE 10020 19888
+ 10020 19888 \
 #Yarn ports
-EXPOSE 8030 8031 8032 8033 8040 8042 8088
+ 8030 8031 8032 8033 8040 8042 8088 \
 #Other ports
-EXPOSE 49707 22
+ 49707 22
+COPY entrypoint.sh /root
+RUN chmod +x /root/entrypoint.sh

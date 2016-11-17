@@ -1,0 +1,8 @@
+<configuration>
+  <property>
+    <name>maperd.job.tracker</name>
+    <value>JOB_TRACKER:9001</value>
+    <description>The host and port that the MapReduce job tracker runs at.
+    IF "local", then jobs are run in-process as a single map and reduce task</description>
+  </property>
+</configuration>
